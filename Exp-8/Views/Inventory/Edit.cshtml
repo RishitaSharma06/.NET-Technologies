@@ -1,0 +1,50 @@
+@model Product
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="form-wrapper">
+    <a asp-controller="Inventory" asp-action="Index" class="back-link">&larr; Back to Inventory</a>
+
+    <div class="form-card">
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h2 class="inv-title" style="font-size: 1.4rem;">Edit Product</h2>
+                <p class="inv-subtitle">Update stock count, category, or unit pricing.</p>
+            </div>
+            <span class="pill-category">ID #@Model.ProductId</span>
+        </div>
+
+        <form asp-controller="Inventory" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="ProductId" />
+
+            <div class="mb-3">
+                <label asp-for="ProductName" class="classy-label"></label>
+                <input asp-for="ProductName" class="classy-input" />
+                <span asp-validation-for="ProductName" class="validation-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Category" class="classy-label"></label>
+                <input asp-for="Category" class="classy-input" />
+                <span asp-validation-for="Category" class="validation-msg"></span>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                    <label asp-for="Quantity" class="classy-label"></label>
+                    <input asp-for="Quantity" class="classy-input" type="number" />
+                    <span asp-validation-for="Quantity" class="validation-msg"></span>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="UnitPrice" class="classy-label"></label>
+                    <input asp-for="UnitPrice" class="classy-input" type="number" step="0.01" />
+                    <span asp-validation-for="UnitPrice" class="validation-msg"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top" style="border-color: #f1f5f9 !important;">
+                <a asp-controller="Inventory" asp-action="Index" class="btn-classy-secondary">Cancel</a>
+                <button type="submit" class="btn-classy-primary">Update Product</button>
+            </div>
+        </form>
+    </div>
+</div>
