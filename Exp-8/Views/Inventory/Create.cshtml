@@ -1,0 +1,45 @@
+@model Product
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<div class="form-wrapper">
+    <a asp-controller="Inventory" asp-action="Index" class="back-link">&larr; Back to Inventory</a>
+
+    <div class="form-card">
+        <div class="mb-4">
+            <h2 class="inv-title" style="font-size: 1.4rem;">Add New Product</h2>
+            <p class="inv-subtitle">Enter the product specifications and opening stock details.</p>
+        </div>
+
+        <form asp-controller="Inventory" asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="ProductName" class="classy-label"></label>
+                <input asp-for="ProductName" class="classy-input" placeholder="e.g. Mechanical Keyboard" />
+                <span asp-validation-for="ProductName" class="validation-msg"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Category" class="classy-label"></label>
+                <input asp-for="Category" class="classy-input" placeholder="e.g. Electronics, Furniture, Office" />
+                <span asp-validation-for="Category" class="validation-msg"></span>
+            </div>
+
+            <div class="row g-3 mb-4">
+                <div class="col-sm-6">
+                    <label asp-for="Quantity" class="classy-label"></label>
+                    <input asp-for="Quantity" class="classy-input" type="number" placeholder="0" />
+                    <span asp-validation-for="Quantity" class="validation-msg"></span>
+                </div>
+                <div class="col-sm-6">
+                    <label asp-for="UnitPrice" class="classy-label"></label>
+                    <input asp-for="UnitPrice" class="classy-input" type="number" step="0.01" placeholder="0.00" />
+                    <span asp-validation-for="UnitPrice" class="validation-msg"></span>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top" style="border-color: #f1f5f9 !important;">
+                <a asp-controller="Inventory" asp-action="Index" class="btn-classy-secondary">Cancel</a>
+                <button type="submit" class="btn-classy-primary">Save Product</button>
+            </div>
+        </form>
+    </div>
+</div>
