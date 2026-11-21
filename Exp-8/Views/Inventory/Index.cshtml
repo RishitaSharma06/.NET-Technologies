@@ -1,0 +1,97 @@
+@model IEnumerable<Product>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    var totalProducts = Model.Count();
+    var totalUnits = Model.Sum(p => p.Quantity);
+    var totalValuation = Model.Sum(p => p.Quantity * p.UnitPrice);
+}
+
+<div class="inv-wrapper">
+    <!-- Top Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+            <h1 class="inv-title">Inventory Management</h1>
+            <p class="inv-subtitle">Monitor stock levels, unit pricing, and total warehouse valuation.</p>
+        </div>
+        <a asp-controller="Inventory" asp-action="Create" class="btn-classy-primary">
+            <span>+</span> Add New Product
+        </a>
+    </div>
+
+    <!-- KPI Summary Strip -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Products</div>
+                <div class="kpi-value">@totalProducts</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Units in Stock</div>
+                <div class="kpi-value">@totalUnits.ToString("N0")</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="kpi-card">
+                <div class="kpi-label">Total Valuation</div>
+                <div class="kpi-value">@totalValuation.ToString("C")</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Table Card -->
+    <div class="classy-card">
+        <div class="table-responsive">
+            <table class="classy-table">
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Stock Status</th>
+                        <th class="text-end">Unit Price</th>
+                        <th class="text-end">Total Value</th>
+                        <th class="text-end" style="width: 170px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <div style="font-weight: 600; color: #334155; margin-bottom: 0.25rem;">No products in inventory yet</div>
+                                <div style="font-size: 0.88rem; color: #64748b;">Click <strong>+ Add New Product</strong> above to add your first item.</div>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            var stockClass = item.Quantity == 0 ? "stock-out" : (item.Quantity <= 10 ? "stock-low" : "stock-high");
+                            var stockLabel = item.Quantity == 0 ? "Out of stock" : $"{item.Quantity} in stock";
+
+                            <tr>
+                                <td class="product-name-cell">@item.ProductName</td>
+                                <td><span class="pill-category">@item.Category</span></td>
+                                <td><span class="pill-stock @stockClass">@stockLabel</span></td>
+                                <td class="text-end fw-medium">@item.UnitPrice.ToString("C")</td>
+                                <td class="text-end fw-bold">@((item.Quantity * item.UnitPrice).ToString("C"))</td>
+                                <td class="text-end">
+                                    <div class="d-inline-flex gap-2">
+                                        <a asp-controller="Inventory" asp-action="Edit" asp-route-id="@item.ProductId" class="btn-action-edit">Edit</a>
+                                        <form asp-controller="Inventory" asp-action="Delete" asp-route-id="@item.ProductId" method="post" class="d-inline"
+                                              onsubmit="return confirm('Remove @item.ProductName from inventory?');">
+                                            <button type="submit" class="btn-action-delete">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
