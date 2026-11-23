@@ -1,0 +1,20 @@
+INSERT INTO Placements (StudentName, EnrollmentNo, Branch, CompanyName, Role, PackageLPA, Status, DriveDate)
+VALUES 
+('Rishita Sharma', '92400103310', 'Computer Engineering', 'Microsoft', 'SDE-1', 42.00, 'Selected', '2026-09-15'),
+('Trishaala Sharma', '92400103309', 'Computer Engineering', 'Google', 'Software Engineer', 45.50, 'Selected', '2026-09-20'),
+('Aashish Ranjan', '92400103389', 'IT', 'Amazon', 'Cloud Support Associate', 18.00, 'Selected', '2026-10-05'),
+('Sneha Kumari', '92400103345', 'Computer Engineering', 'TCS', 'System Engineer', 7.50, 'Shortlisted', '2026-10-12'),
+('Aditya Verma', '92400103312', 'Mechanical', 'L&T', 'Graduate Engineer Trainee', 6.50, 'Selected', '2026-10-18');
+
+//SQL
+CREATE TABLE [dbo].[Placements] (
+    [PlacementId] INT IDENTITY (1, 1) NOT NULL PRIMARY KEY,
+    [StudentName] NVARCHAR (100) NOT NULL,
+    [EnrollmentNo] NVARCHAR (50) NOT NULL,
+    [Branch] NVARCHAR (50) NOT NULL,
+    [CompanyName] NVARCHAR (100) NOT NULL,
+    [Role] NVARCHAR (100) NOT NULL,
+    [PackageLPA] DECIMAL (5, 2) NOT NULL,
+    [Status] NVARCHAR (30) NOT NULL,
+    [DriveDate] DATE NOT NULL
+);
