@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Home";
+}
+<section class="hero">
+    <p class="eyebrow">ASP.NET CORE MVC PROJECT</p>
+    <h1>Student Course Registration System</h1>
+    <p>Register students for a course, view the student list and open individual registration details.</p>
+    <div class="actions">
+        <a class="button" asp-controller="Student" asp-action="Create">Register a Student</a>
+        <a class="button button-light" asp-controller="Student" asp-action="Index">View Student List</a>
+    </div>
+</section>
+<section class="info-grid">
+    <article class="info-card"><h2>Register</h2><p>Enter student name, email, course and semester through a validated form.</p></article>
+    <article class="info-card"><h2>View</h2><p>See all student registrations in one list.</p></article>
+    <article class="info-card"><h2>Details</h2><p>Open a student's record to view the complete registration information.</p></article>
+</section>
