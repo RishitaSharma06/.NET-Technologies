@@ -1,0 +1,16 @@
+@model Student
+@{
+    ViewData["Title"] = "Student Details";
+}
+<div class="form-card">
+    <p class="eyebrow">REGISTRATION RECORD #@Model.Id</p>
+    <h1>Student Details</h1>
+    <dl class="details">
+        <dt>Student ID</dt><dd>@Model.Id</dd>
+        <dt>Name</dt><dd>@Model.Name</dd>
+        <dt>Email</dt><dd>@Model.Email</dd>
+        <dt>Course</dt><dd>@Model.Course</dd>
+        <dt>Semester</dt><dd>@Model.Semester</dd>
+    </dl>
+    <a class="button" asp-action="Index">Back to Student List</a>
+</div>
