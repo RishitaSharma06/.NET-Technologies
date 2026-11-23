@@ -1,0 +1,20 @@
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+
+SmartCampusPortal/
+├── Controllers/
+│   ├── ServiceRequestsController.cs      (MVC Controller - Views & Forms)
+│   └── Api/
+│       └── CampusApiController.cs        (Web API Controller - JSON Endpoints)
+├── Data/
+│   └── CampusDbContext.cs                (EF Core Database Context)
+├── Models/
+│   └── ServiceRequest.cs                 (Data Model & Validation)
+├── Views/
+│   └── ServiceRequests/
+│       ├── Index.cshtml                  (Dashboard + Live API Stats + Table)
+│       └── Create.cshtml                 (New Service Request Form)
+├── appsettings.json                      (SQL Server Connection String)
+└── Program.cs                            (Service & Routing Configuration)
