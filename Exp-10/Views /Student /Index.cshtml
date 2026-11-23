@@ -1,0 +1,43 @@
+@model IEnumerable<Student>
+@{
+    ViewData["Title"] = "Student List";
+}
+<div class="heading-row">
+    <div><p class="eyebrow">REGISTRATIONS</p><h1>Student List</h1></div>
+    <a class="button" asp-action="Create">+ Add Student</a>
+</div>
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <h2>No students registered yet</h2>
+        <p>Use the button below to add the first student.</p>
+        <a class="button" asp-action="Create">Register Student</a>
+    </div>
+}
+else
+{
+    <div class="table-wrap">
+        <table>
+            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Semester</th><th>Action</th></tr></thead>
+            <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td><td>@student.Name</td><td>@student.Email</td>
+                    <td>@student.Course</td><td>@student.Semester</td>
+                    <td><a asp-action="Details" asp-route-id="@student.Id">View Details</a></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+<h2>Product Details</h2>
+<p><b>Product ID:</b> @Model.Id</p>
+<p><b>Product Name:</b> @Model.Name</p>
+<p><b>Price:</b> ₹@Model.Price</p>
+<p><b>Category:</b> @Model.Category</p>
+@Html.ActionLink("Back to Products", "Index")
+</body>
+</html>
