@@ -1,0 +1,37 @@
+@model Student
+@{
+    ViewData["Title"] = "Student Registration";
+}
+<div class="form-card">
+    <p class="eyebrow">NEW REGISTRATION</p>
+    <h1>Student Registration Form</h1>
+    <p class="muted">Enter the details below. Fields are validated before saving.</p>
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" placeholder="Enter full name" />
+            <span asp-validation-for="Name" class="field-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" placeholder="name@example.com" />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Course"></label>
+            <input asp-for="Course" placeholder="e.g. Computer Engineering" />
+            <span asp-validation-for="Course" class="field-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Semester"></label>
+            <input asp-for="Semester" type="number" min="1" max="8" />
+            <span asp-validation-for="Semester" class="field-error"></span>
+            <small>Enter a semester from 1 to 8.</small>
+        </div>
+        <div class="actions">
+            <button class="button" type="submit">Submit Registration</button>
+            <a class="button button-light" asp-action="Index">Cancel</a>
+        </div>
+    </form>
+</div>
