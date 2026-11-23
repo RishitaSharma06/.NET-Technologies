@@ -1,0 +1,40 @@
+
+CREATE DATABASE PlacementDB;
+GO
+
+USE PlacementDB;
+GO
+
+CREATE TABLE Students
+(
+    StudentID INT PRIMARY KEY IDENTITY(1,1),
+    StudentName VARCHAR(100),
+    Department VARCHAR(50),
+    CompanyName VARCHAR(100),
+    Package DECIMAL(10,2),
+    PlacementStatus VARCHAR(30)
+);
+
+INSERT INTO Students
+(StudentName, Department, CompanyName, Package, PlacementStatus)
+VALUES
+('Aarav Patel','Computer Engineering','TCS',5.5,'Placed'),
+('Riya Shah','IT','Infosys',6.0,'Placed'),
+('Karan Mehta','Computer Engineering','Not Assigned',0,'Not Placed'),
+('Neha Joshi','IT','Wipro',4.5,'Placed'),
+('Rahul Desai','Computer Engineering','Not Assigned',0,'Not Placed');
+
+CREATE TABLE Companies
+(
+    CompanyID INT PRIMARY KEY IDENTITY(1,1),
+    CompanyName VARCHAR(100),
+    JobRole VARCHAR(100),
+    Package DECIMAL(10,2)
+);
+
+INSERT INTO Companies
+(CompanyName, JobRole, Package)
+VALUES
+('TCS','Software Developer',5.5),
+('Infosys','System Engineer',6.0),
+('Wipro','Web Developer',4.5);
